@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoove滾動載入效果</title>
+    <style>
+        body {
+            margin: 0;
+            /* 因為預設有8px的外距，會造成vh無法確實滿版 */
+        }
+        
+        .banner {
+            height: 100vh;
+            background-color: #80cbc4;
+            text-align: center;
+            line-height: 100vh;
+            /* 設定垂直置中，也可以使用flex做置中 */
+            color: azure;
+            font-size: 3rem;
+        }
+        
+        .row {
+            display: flex;
+            /* 讓子層的孩子並排 */
+        }
+        
+        .item {
+            flex: 1;
+            /* 定義伸展比，只有1為每個物件佔一等分 */
+            height: 300px;
+            margin: 20px;
+            background-color: cadetblue;
+        }
+        
+        footer {
+            height: 200px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 200px;
+            color: azure;
+            font-size: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="banner">BANNER</div>
+    <div class="row">
+        <div class="item" data-move-y="200px"></div>
+        <div class="item"></div>
+    </div>
+    <div class="row">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <div class="row">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <div class="row">
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <div class="row">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <Footer>FOOTER</Footer>
+    <!-- jquery原生碼 CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- jq smoove套件 CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.10/jquery.smoove.min.js"></script>
+    <!-- 要注意加入套件CDN要加上“https:”，有些會沒有要再自己加上去 -->
+
+    <!-- 套用Smoove，激活javascript -->
+    <script>
+        $('.item').smoove({
+            min_width: 0,
+            offset: '10%',
+            opacity: 15,
+        });
+        /* 預設會有options那個指的是默認值可以改或是刪除 */
+        /* 預設效果就是淡入淡出，可以再自己加上動態旋轉效果，滑入滑出等 */
+        /* 是對class="item"做動作，加入動態smoove到item裡，就會對item做動態效果 */
+    </script>
+
+</body>
+
+</html>

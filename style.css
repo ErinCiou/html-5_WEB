@@ -1,0 +1,867 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Estonia&family=Noto+Sans+TC:wght@100;400;500&display=swap');
+@font-face {
+    /* 指定字體樣式 */
+    font-family: 'Sweet Child Script';
+    src: url(./Sweet\Child.ttf);
+}
+
+
+/* 如果要套其他網路字體要放在google font的下方，因為google font只允許utf-8在它上面 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 不累加內距padding與邊框border，外距margin照算 */
+}
+
+body {
+    font-family: Helvetica, Arial, '黑體-繁', 'Heiti TC', '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+    /* 預設字體按順序，在最後要記得補無襯線字否則電腦順序到最後會自動抓襯線字體，因為不同語系的國家不一定會顯示繁體中文，所以最好要再補上英文名稱 */
+    /* 引號使用的分別，沒有空白的不用使用引號(包含-連字符)，有的要使用 */
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+
+/* 共用的背景顏色 */
+
+.lightpink {
+    background-color: #ece1e8;
+}
+
+.lightblue {
+    background-color: #ecf5ff;
+}
+
+.lightgreen {
+    background-color: #dfefde;
+}
+
+
+/* GoTop Icon */
+
+#gotop {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    right: 6%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.568);
+    border-radius: 50%;
+    padding: 6px 2px 0px 2px;
+    cursor: pointer;
+    z-index: 9999;
+    /* 因為不是超連結，再自己加上手 */
+}
+
+
+/* 因為套用fontawesome的cdn，在.fas裡已經有預設設定，在這裡寫的是為了蓋掉預設*/
+
+#gotop .fas {
+    display: block;
+    /* position: absolute; */
+    /* font-family: 'fontawesome'; */
+    /* 如果有下載fontawesome可以加寫這行確保字體不跑掉 */
+    font-size: 3rem;
+    font-weight: 400;
+    color: #888;
+    line-height: 1.4rem;
+    text-align: center;
+}
+
+
+/* Top Bar */
+
+.top_header {
+    height: 100vh;
+    /* background-color: rgb(255, 214, 225); */
+    border: solid 25px white;
+    overflow: hidden;
+    position: relative;
+}
+
+.top_box {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px;
+    position: relative;
+    /* 為了加入z-index讓video浮起來 */
+    z-index: 999;
+}
+
+.logo {
+    width: 75px;
+}
+
+.top_header nav {
+    display: flex;
+    flex-direction: column;
+    /* 主軸垂直 */
+    align-items: flex-end;
+    /* 設定副軸(水平)對齊-置底(靠右) */
+}
+
+nav ul {
+    display: flex;
+    /* flex-direction: row; 預設：主軸水平 */
+    /* justify-content: flex-end; 主軸對齊-靠右 */
+    list-style-type: none;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    nav .menu {
+        flex-direction: column;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    nav .menu {
+        flex-direction: column;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    nav .menu {
+        flex-direction: row;
+    }
+}
+
+nav .icon li {
+    width: 35px;
+    /* flex-basis, 如主軸為水平則為設定寬=35px */
+    margin: 0 0 20px 10px;
+}
+
+nav .menu li {
+    /* background-color: thistle; */
+    width: 100px;
+    height: 35px;
+    /* border: solid 1px red; */
+}
+
+nav .menu a {
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    text-decoration: none;
+    color: #666;
+    border: solid 1px transparent;
+    /* 超連結如果希望給了邊框但不往下滑動，可以在設定a的時候多設定透明的邊框border */
+}
+
+nav .menu a:hover {
+    background-color: rgba(255, 255, 255, 0.479);
+    border: solid 1px #666;
+}
+
+
+/* banner */
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* 原本relative改為absolute是為了在做RWD調整時可以簡易微調
+    但是改為absolute會變成吃孩子的尺寸所以要再加上width: 100%做延展 */
+    /* 為了加入z-index讓video浮起來 */
+    z-index: 888;
+}
+
+.banner .name h2 {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 100;
+    font-size: 3rem;
+}
+
+.banner .name h3 {
+    /* font-family: 'Sweet Child Script'; */
+    font-family: 'Estonia', cursive;
+    font-weight: 400;
+    font-size: 1.5rem;
+    letter-spacing: 0.38rem;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    .banner {
+        flex-direction: column;
+        align-items: flex-end;
+        /* 靠右對齊 */
+    }
+    .banner figure {
+        width: 70%;
+    }
+    .banner .name {
+        width: 90%;
+        /* 因為靠右對齊，這樣設定表示左邊的寬度是5％的間距 */
+        margin-bottom: 20px;
+    }
+    .banner .name h2 {
+        font-size: 2.3rem;
+    }
+    .banner .name h3 {
+        font-size: 1rem;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    .banner figure {
+        width: 60%;
+    }
+    .banner .name {
+        margin-left: 7%;
+        margin-top: -9vh;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    .banner figure {
+        width: 33%;
+    }
+    .banner .name {
+        margin-left: 15%;
+        margin-top: 20vh;
+    }
+}
+
+
+/* Video */
+
+.top_header video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: opacity(30%) brightness(200%) saturate(70%);
+}
+
+
+/* main */
+
+section {
+    height: 100vh;
+    /* 設定高度與視窗同寬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section h2 {
+    /* width: 100px; */
+    /* 如果設定寬度的話調整瀏覽器的字體尺寸就會跑掉，所以直接設定display: flex會依據內容調整寬度，可以保持上方線條隨著字體大小改變而一起變化 */
+    color: #555;
+    font-size: 2rem;
+    margin: 50px 0 20px 0;
+    padding: 15px 20px;
+    text-align: center;
+    border-top: solid 3px #666;
+}
+
+
+/* service section */
+
+.list_box {
+    display: flex;
+    width: 80%;
+}
+
+.item {
+    /* service and news共用items都需要overflow: hidden */
+    flex: 1;
+    /* 1表示幾分，每一個item占的份數一樣 */
+    margin: 20px;
+    height: 65vh;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    .list_box {
+        flex-direction: column;
+        width: 95%;
+        height: 80vh;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    .list_box {
+        flex-direction: column;
+        height: 80vh;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    .list_box {
+        flex-direction: row;
+    }
+}
+
+.service_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    /* overflow: hidden; */
+}
+
+.service_item1 {
+    background-image: url(./images/pt_svc1.jpg);
+}
+
+.service_item2 {
+    background-image: url(./images/pt_svc2.jpg);
+}
+
+.service_item3 {
+    background-image: url(./images/pt_svc3.jpg);
+}
+
+.service_title {
+    /* height: 100px; */
+    display: block;
+    background-color: rgba(0, 0, 0, 0.301);
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.service_title h3 {
+    font-size: 1.4rem;
+    margin: 0 0 8px 0;
+}
+
+.service_title p {
+    letter-spacing: .1rem;
+    /* 單行省略語法 */
+    /* 且父層一定要有overflow: hidden */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* news section */
+
+#news figure {
+    height: 40%;
+    /* 在整個section裡面(height: 100vh)高度佔40% */
+    overflow: hidden;
+}
+
+#news figure img {
+    height: 100%;
+    object-fit: cover;
+    /* 需要設定寬高100% */
+}
+
+#news h3 {
+    color: #666;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 10px 0;
+    margin: 20px 20px;
+    border-bottom: solid 2px #666;
+}
+
+#news article {
+    box-shadow: 2px 2px 2px #ddd;
+}
+
+#news p {
+    margin: 0 20px;
+    line-height: 1.2rem;
+    /*英文及中文字體的大小不同，設定行高以瀏覽器尺寸為主會較一致*/
+    text-align: justify;
+    /* 設定對其兩邊，但要注意英文字體不要這樣設定 */
+    /* 多行省略語法 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /* 尚未成為標準(正式)寫法(主要是看瀏覽器有沒有支援)要加上前綴詞-webkit- */
+    -webkit-box-orient: vertical;
+    /* 設定box的指向是垂直 */
+    -webkit-line-clamp: 6;
+    /* 行數，尚未支援加上前綴詞 */
+}
+
+.more {
+    display: block;
+    width: 40%;
+    margin: 20px auto;
+    padding: 5px 10px;
+    text-align: center;
+    border: solid 1px #666;
+    box-shadow: 0 0 1px #333;
+    text-decoration: none;
+    color: #555;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    #news article:last-child {
+        display: none;
+    }
+    #news h3 {
+        margin: 10px;
+    }
+    #news p {
+        -webkit-line-clamp: 2;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    #news article:last-child {
+        display: none;
+    }
+    #news h3 {
+        margin: 10px;
+    }
+    #news p {
+        -webkit-line-clamp: 4;
+    }
+    .more {
+        width: 20%;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    #news article:last-child {
+        display: block;
+    }
+    #news h3 {
+        margin: 20px 20px;
+    }
+    #news p {
+        -webkit-line-clamp: 6;
+    }
+}
+
+
+/* about section */
+
+#about {
+    background-image: url(./images/pt_about.jpg);
+    background-size: cover;
+    /* 背景的尺寸： 設定滿版 */
+    background-attachment: fixed;
+    /* 固定背景，不隨著捲軸滑動而移動 */
+}
+
+.about_box {
+    /* 調整h2 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 預設stretch會拉伸抓的是父層的尺寸，其他都吃內容的尺寸 */
+    /* 對內容 */
+    width: 60%;
+    height: 100vh;
+    background-color: #ccb4eb80;
+    padding: 0 80px;
+}
+
+.about_box p {
+    overflow: auto;
+    /* 超出會有捲軸可以拉動*/
+    margin-bottom: 60px;
+    line-height: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #555;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    .about_box {
+        width: 90%;
+        padding: 0 30px;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    .about_box {
+        width: 75%;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    .about_box {
+        width: 60%;
+    }
+}
+
+
+/* for scroll bar */
+
+.scroll {
+    /* width: 20px;
+    height: 200px; */
+    overflow: auto;
+    float: left;
+    margin: 0 10px;
+}
+
+.scroll4::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scroll4::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 20px;
+}
+
+.scroll4::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 20px;
+}
+
+
+/* Video Section */
+
+#video video {
+    width: 100%;
+    height: 100%;
+    /* 影片寬高都設定100%才能等比例延展但是圖片不能兩個都設定，因為會變形 */
+}
+
+#video div {
+    height: 73vh;
+    /* 只設定高度跟視窗同高才不會依據寬度去調整而超過區塊 */
+}
+
+#video h2 {
+    margin: 40px 0 10px 0;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    #video video {
+        height: auto;
+    }
+    /* #video video是調整video的尺寸 */
+    #video {
+        height: 55vh;
+    }
+    /* #video是調整section */
+    /* 正常來說不同區塊的調整是要分開寫，要寫在近一點的地方才看得懂 */
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    #video video {
+        height: auto;
+    }
+    #video {
+        height: 65vh;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 1025px) {
+    /* 考量到1024*1366的平板尺寸，通常會自動旋轉所以基本上是接近桌機的尺寸，但如果要多考慮可以加上這個尺寸 */
+    #video video {
+        height: 100%;
+    }
+    #video {
+        height: 100vh;
+    }
+}
+
+
+/* Form Section */
+
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+#contact_form {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 40%;
+    /* 因為align-items預設是自動延展與父層相同，所以不調整會直接抓父層的尺寸 */
+}
+
+#contact h2 {
+    margin: 30px 0 0 0;
+}
+
+#contact_form label {
+    margin: 20px 0 5px 0;
+    color: #555;
+    /* text-align: center; */
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+#contact_form input,
+#contact_form textarea {
+    border: solid 1px #c9f0c6;
+    border-radius: 5px;
+    /* color: rebeccapurple; */
+    padding: 15px;
+    font-size: 1rem;
+}
+
+#contact_form textarea {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 20vh;
+}
+
+
+/* position圖片定位 */
+
+.flower_r {
+    width: 300px;
+    position: absolute;
+    /* 設定為浮動，父層要設定relative才不會跑版，因為relative會管兄弟層 */
+    bottom: -30px;
+    left: -20px;
+    transform: rotate(25deg);
+}
+
+.flower_w {
+    width: 300px;
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    transform: rotate(-25deg);
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    .flower_r,
+    .flower_w {
+        display: none;
+    }
+    #contact_form {
+        width: 80%;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    #contact_form {
+        width: 60%;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    #contact_form {
+        width: 40%;
+    }
+}
+
+
+/* Footer */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+small {
+    display: flex;
+    color: #666;
+}
+
+
+/* RWD */
+
+
+/* 小型設備 */
+
+@media (max-width: 767px) {
+    footer .menu {
+        display: none;
+    }
+    footer {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    small {
+        margin: 20px 0 0 0;
+        justify-content: center;
+    }
+}
+
+
+/* 中型設備 */
+
+@media (min-width: 768px) {
+    footer .menu {
+        display: none;
+    }
+}
+
+
+/* 大型設備 */
+
+@media (min-width: 992px) {
+    footer .menu {
+        display: flex;
+    }
+}
+
+
+/* CSS Button */
+
+button {
+    /* position: relative; */
+    /* outline: none; */
+    /* text-decoration: none; */
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    height: 60px;
+    width: 210px;
+    /* opacity: 1; */
+    background-color: #ffffff;
+    border: 1px solid rgba(22, 167, 131, 0.6);
+}
+
+button span {
+    color: #16a79b;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+}
+
+button:hover {
+    animation: rotate 0.7s ease-in-out both;
+}
+
+button:hover span {
+    animation: storm 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+    25% {
+        transform: rotate(3deg) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: rotate(-3deg) translate3d(0, 0, 0);
+    }
+    75% {
+        transform: rotate(1deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+    }
+}
+
+@keyframes storm {
+    0% {
+        transform: translate3d(0, 0, 0) translateZ(0);
+    }
+    25% {
+        transform: translate3d(4px, 0, 0) translateZ(0);
+    }
+    50% {
+        transform: translate3d(-3px, 0, 0) translateZ(0);
+    }
+    75% {
+        transform: translate3d(2px, 0, 0) translateZ(0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) translateZ(0);
+    }
+}
